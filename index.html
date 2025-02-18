@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #2C3E50;
+            color: #ECF0F1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #34495E;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            color: #E74C3C;
+        }
+
+        .hangman {
+            font-size: 20px;
+            white-space: pre;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background: #E74C3C;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .message {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .win {
+            color: #2ECC71;
+        }
+
+        .lose {
+            color: #E74C3C;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hangman Game</h1>
+
+        {% if won %}
+        <p class="message win">Congratulations! You Won! 🎉</p>
+        <p class="hangman" id="hangman_display">{{ dancing_frame }}</p>
+        {% elif lost %}
+        <p class="message lose">Game Over! You Lost! ❌</p>
+        <p class="hangman">{{ hangman_stage }}</p>
+        <p>The correct word was: <strong>{{ word }}</strong></p>
+        {% else %}
+        <p class="hangman" id="hangman_display">{{ hangman_stage }}</p>
+        <p>Word: {{ hidden_word }}</p>
+        <p>Hint: {{ hint }}</p>
+        <p>Attempts Left: {{ remaining_attempts }}</p>
+        <p>Word Length: {{ word_length }}</p>
+
+        <form action="/guess" method="post">
+            <input type="text" name="guess" maxlength="1" required>
+            <button type="submit">Guess</button>
+        </form>
+        {% endif %}
+
+
+        <br>
+        <a href="/reset"><button>Restart Game</button></a>
+    </div>
+</body>
+
+</html>
