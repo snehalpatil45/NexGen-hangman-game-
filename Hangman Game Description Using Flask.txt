@@ -1,0 +1,27 @@
+Hangman Game Description Using Flask:
+1. Flask Web Framework:
+Flask will serve as the backend to handle routing, game logic, and rendering of templates (HTML). It will manage user sessions, game states, and interaction with the front-end.
+
+2. Game Flow:
+Start Game: The game begins with a random word selected from a predefined list or an external API. The word is hidden, with underscores representing each letter.
+User Input: The user guesses one letter at a time by entering it into a text input field or by clicking a button for each letter.
+Incorrect Guess: With each incorrect guess, the hangman image progresses through different stages (e.g., hangman0.png to hangman6.png).
+Correct Guess: If the user guesses a letter correctly, the letter is revealed in its corresponding position in the word.
+Win/Loss Condition: The game ends when either all letters of the word are correctly guessed (win) or the hangman reaches the final stage (loss).
+UI Updates: The user interface updates dynamically with each guess, displaying the current word, hangman image, and the list of previously guessed letters.
+
+3. Backend Logic:
+Game State: A dictionary or class holds the current state of the game, such as the word, guessed letters, incorrect guesses, and remaining attempts.
+API Integration: Optionally, you can integrate an API to fetch word definitions or to choose random words from an external source.
+Session Management: Flask sessions will be used to store the user's progress across multiple game rounds, ensuring the game state persists.
+
+4. Front-end:
+HTML/CSS: The game's layout, buttons, word display, and hangman images will be created using HTML and styled with CSS.
+JavaScript: For dynamically updating the game state without refreshing the page (AJAX), and for handling animations like the dancing hangman after a win.
+Hangman Animation: Animations (e.g., a dancing hangman) will be triggered when the player wins, using CSS animations or JavaScript libraries like anime.js.
+
+5. Game Features:
+Interactive Buttons: The game could include interactive buttons for users to click on letters, or a keyboard interface for typing guesses.
+Word Hints: Optionally, the player could request a hint, which could reveal one letter or give the definition of the word (if integrated with an API).
+Celebration Animation: Upon winning, the hangman character could "dance" or display a celebratory animation.
+Game Restart: After the game ends (win or loss), the user can start a new game by clicking a "Restart" button.
